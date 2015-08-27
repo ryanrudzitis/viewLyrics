@@ -22,13 +22,15 @@ class ViewController: UIViewController {
     let brain = URLBrain()
     
     @IBAction func lyricsPressed(sender: UIButton) {
-        let title = musicPlayer.nowPlayingItem?.title
         
-        let rapGeniusURLWithoutTitle = "http://google.com/search?btnI=1&q=rap+genius+"
+        
+        
+        let title = musicPlayer.nowPlayingItem?.title
+        let artist = musicPlayer.nowPlayingItem?.artist
         
         if title != nil {
-            let encodedTitle = brain.encodeTitle(title!)
-            let finalURL = rapGeniusURLWithoutTitle + encodedTitle
+            let serviceName = (sender.titleLabel?.text)!
+            let finalURL = brain.getURL(serviceName, songTitle: title!, artistName: artist!)
             
             print(finalURL)
             
@@ -36,11 +38,7 @@ class ViewController: UIViewController {
             let svc = SFSafariViewController(URL: NSURL(string: finalURL)!)
 
             self.presentViewController(svc, animated: true, completion: nil)
-            
-            
-            
-            
-            
+
         }
     }
     

@@ -66,6 +66,9 @@
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <state key="normal" title="Who Sampled"/>
+                                <connections>
+                                    <action selector="lyricsPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2ka-Ol-qh3"/>
+                                </connections>
                             </button>
                         </subviews>
                         <animations/>
