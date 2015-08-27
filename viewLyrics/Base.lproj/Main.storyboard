@@ -70,6 +70,17 @@
                                     <action selector="lyricsPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2ka-Ol-qh3"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z9r-vo-PGe">
+                                <rect key="frame" x="234" y="522" width="132" height="35"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="CjN-dO-HyH"/>
+                                </constraints>
+                                <state key="normal" title="Music App"/>
+                                <connections>
+                                    <action selector="musicAppPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MAA-Hm-z7v"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -90,10 +101,14 @@
                             <constraint firstItem="DX8-Lw-wuf" firstAttribute="top" secondItem="Ift-QI-GuW" secondAttribute="bottom" constant="8" symbolic="YES" id="Wi6-30-gMG"/>
                             <constraint firstItem="kzH-Vp-OcI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Xbg-Fh-z9U"/>
                             <constraint firstAttribute="bottom" secondItem="8fA-P5-cHf" secondAttribute="bottom" constant="128" id="Y4Q-7L-nFP"/>
+                            <constraint firstItem="z9r-vo-PGe" firstAttribute="width" secondItem="8fA-P5-cHf" secondAttribute="width" id="bfJ-lg-Wz4"/>
+                            <constraint firstItem="z9r-vo-PGe" firstAttribute="top" secondItem="jzF-cM-0U6" secondAttribute="bottom" constant="8" symbolic="YES" id="dAY-WG-DD6"/>
                             <constraint firstItem="8fA-P5-cHf" firstAttribute="centerX" secondItem="jzF-cM-0U6" secondAttribute="centerX" id="hd2-zp-Nvd"/>
                             <constraint firstItem="Ift-QI-GuW" firstAttribute="leading" secondItem="R2F-Ms-whB" secondAttribute="leading" id="jSX-ku-LNJ"/>
                             <constraint firstItem="Ift-QI-GuW" firstAttribute="trailing" secondItem="R2F-Ms-whB" secondAttribute="trailing" id="m14-0Q-rGd"/>
                             <constraint firstAttribute="leadingMargin" secondItem="Ift-QI-GuW" secondAttribute="leading" id="mqm-Zh-DUa"/>
+                            <constraint firstItem="jzF-cM-0U6" firstAttribute="width" secondItem="8fA-P5-cHf" secondAttribute="width" id="nvu-lw-cJR"/>
+                            <constraint firstItem="z9r-vo-PGe" firstAttribute="leading" secondItem="jzF-cM-0U6" secondAttribute="leading" id="t6X-PG-zBL"/>
                             <constraint firstItem="Ift-QI-GuW" firstAttribute="leading" secondItem="DX8-Lw-wuf" secondAttribute="leading" id="u7t-Bw-Yfh"/>
                             <constraint firstAttribute="trailingMargin" secondItem="DX8-Lw-wuf" secondAttribute="trailing" id="vfb-Nd-ZYC"/>
                             <constraint firstItem="Ift-QI-GuW" firstAttribute="top" secondItem="kzH-Vp-OcI" secondAttribute="bottom" constant="14" id="yFK-pf-bY5"/>

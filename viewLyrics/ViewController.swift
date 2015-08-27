@@ -36,6 +36,13 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func musicAppPressed(sender: AnyObject) {
+        let stringURL = "music:"
+        let url: NSURL = NSURL(string: stringURL)!
+        UIApplication.sharedApplication().openURL(url)
+    }
+    
+    
     func safariViewControllerDidFinish(controller: SFSafariViewController) {
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
