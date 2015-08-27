@@ -103,7 +103,9 @@
                     <connections>
                         <outlet property="artistLabel" destination="DX8-Lw-wuf" id="AQP-CS-x0A"/>
                         <outlet property="artworkView" destination="kzH-Vp-OcI" id="3V8-RB-l5U"/>
+                        <outlet property="rapGeniusBtn" destination="8fA-P5-cHf" id="ZX4-x0-jbZ"/>
                         <outlet property="titleLabel" destination="Ift-QI-GuW" id="cS7-ia-agQ"/>
+                        <outlet property="whoSampledBtn" destination="jzF-cM-0U6" id="dZF-gl-26H"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

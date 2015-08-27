@@ -15,6 +15,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var artworkView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var artistLabel: UILabel!
+    @IBOutlet weak var rapGeniusBtn: UIButton!
+    @IBOutlet weak var whoSampledBtn: UIButton!
     
     let musicPlayer = MPMusicPlayerController()
     let brain = URLBrain()
@@ -42,27 +44,50 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "appDidBecomeActive:", name: UIApplicationDidBecomeActiveNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "appWillEnterForeground:", name: UIApplicationWillEnterForegroundNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "songDidChange:", name: MPMusicPlayerControllerNowPlayingItemDidChangeNotification, object: nil)
+        musicPlayer.beginGeneratingPlaybackNotifications()
     }
     
     
     func appDidBecomeActive(notifcation: NSNotification) {
-        print(musicPlayer.nowPlayingItem == nil)
+       updateSongInfo()    }
+    
+    func appWillEnterForeground(notification: NSNotification) {
+        print("will enter foreground")
+        updateSongInfo()
         
-        titleLabel.text = musicPlayer.nowPlayingItem?.title
-        artistLabel.text = musicPlayer.nowPlayingItem?.artist
-        
-        let artwork = musicPlayer.nowPlayingItem?.artwork
-        let image = artwork?.imageWithSize(CGSizeMake(150, 150))
-        
-        if image != nil {
-            artworkView.image = image
-            self.view.addSubview(artworkView)
+    }
+    
+    func updateSongInfo() {
+        if musicPlayer.nowPlayingItem != nil {
+            titleLabel.text = musicPlayer.nowPlayingItem?.title
+            artistLabel.text = musicPlayer.nowPlayingItem?.artist
+            
+            rapGeniusBtn.enabled = true
+            whoSampledBtn.enabled = true
+            
+            let artwork = musicPlayer.nowPlayingItem?.artwork
+            let image = artwork?.imageWithSize(CGSizeMake(150, 150))
+            
+            if image != nil {
+                artworkView.image = image
+                self.view.addSubview(artworkView)
+            }
+
+        } else {
+            titleLabel.text = "No song playing"
+            artistLabel.text = " "
+            rapGeniusBtn.enabled = false
+            whoSampledBtn.enabled = false
+            
+            artworkView.image = UIImage(named: "no_sign")
         }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func songDidChange(notification: NSNotification) {
+        print("did cnhange")
+        updateSongInfo()
     }
 }
 
