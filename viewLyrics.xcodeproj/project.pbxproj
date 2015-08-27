@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E64C25161B8E8ED500A62D82 /* URLBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64C25151B8E8ED500A62D82 /* URLBrain.swift */; };
 		E6CA4B301B8E2D4E00AE95F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6CA4B2F1B8E2D4E00AE95F6 /* AppDelegate.swift */; };
 		E6CA4B321B8E2D4E00AE95F6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6CA4B311B8E2D4E00AE95F6 /* ViewController.swift */; };
 		E6CA4B351B8E2D4E00AE95F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6CA4B331B8E2D4E00AE95F6 /* Main.storyboard */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E64C25151B8E8ED500A62D82 /* URLBrain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLBrain.swift; sourceTree = "<group>"; };
 		E6CA4B2C1B8E2D4E00AE95F6 /* viewLyrics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = viewLyrics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6CA4B2F1B8E2D4E00AE95F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E6CA4B311B8E2D4E00AE95F6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -57,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				E6CA4B2F1B8E2D4E00AE95F6 /* AppDelegate.swift */,
+				E64C25151B8E8ED500A62D82 /* URLBrain.swift */,
 				E6CA4B311B8E2D4E00AE95F6 /* ViewController.swift */,
 				E6CA4B331B8E2D4E00AE95F6 /* Main.storyboard */,
 				E6CA4B391B8E2D4E00AE95F6 /* Assets.xcassets */,
@@ -138,6 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E64C25161B8E8ED500A62D82 /* URLBrain.swift in Sources */,
 				E6CA4B321B8E2D4E00AE95F6 /* ViewController.swift in Sources */,
 				E6CA4B301B8E2D4E00AE95F6 /* AppDelegate.swift in Sources */,
 				E6CA4B381B8E2D4E00AE95F6 /* viewLyrics.xcdatamodeld in Sources */,
@@ -290,6 +294,7 @@
 				E6CA4B431B8E2D4E00AE95F6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
