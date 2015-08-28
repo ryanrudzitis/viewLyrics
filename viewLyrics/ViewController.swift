@@ -47,6 +47,17 @@ class ViewController: UIViewController {
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    override func viewDidAppear(animated: Bool) {
+        let query = MPMediaQuery.songsQuery()
+        let hasMoney = MPMediaPropertyPredicate(value: "money", forProperty: MPMediaItemPropertyTitle, comparisonType: .Contains)
+        query.addFilterPredicate(hasMoney)
+        let result = query.collections
+        
+        for song in result! {
+            print(song.representativeItem?.title)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -54,6 +65,7 @@ class ViewController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "appWillEnterForeground:", name: UIApplicationWillEnterForegroundNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "songDidChange:", name: MPMusicPlayerControllerNowPlayingItemDidChangeNotification, object: nil)
         musicPlayer.beginGeneratingPlaybackNotifications()
+        
     }
     
     
