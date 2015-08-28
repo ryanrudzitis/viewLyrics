@@ -66,7 +66,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Now Playing" id="yai-4g-hbk">
                         <barButtonItem key="leftBarButtonItem" title="Settings" id="foJ-0V-2Rr"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="5tA-6M-909"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="5tA-6M-909">
+                            <connections>
+                                <action selector="searchPressed:" destination="BYZ-38-t0r" id="2Z4-2Y-POA"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="artistLabel" destination="DX8-Lw-wuf" id="AQP-CS-x0A"/>

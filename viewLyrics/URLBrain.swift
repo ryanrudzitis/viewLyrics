@@ -43,8 +43,8 @@ class URLBrain {
             
             if stringToClean[index] == "(" {
                 print("chopping off (")
-                let range = stringToClean.startIndex.advancedBy(i)..<stringToClean.endIndex
-                newString.removeRange(range)
+                //let range = stringToClean.startIndex.advancedBy(i)..<stringToClean.endIndex
+                //newString.removeRange(range)
                 break
             } else { i++ }
         }

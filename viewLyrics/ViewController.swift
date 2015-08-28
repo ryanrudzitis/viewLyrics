@@ -10,7 +10,7 @@ import UIKit
 import MediaPlayer
 import SafariServices
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating, UISearchBarDelegate {
 
     @IBOutlet weak var artworkView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -20,6 +20,79 @@ class ViewController: UIViewController {
     
     let musicPlayer = MPMusicPlayerController()
     let brain = URLBrain()
+    var resultSearchController = UISearchController()
+    
+    var myTableView = UITableView()
+    var items = ["Ryan", "Rocks", "Tap to dismiss"]
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "appDidBecomeActive:", name: UIApplicationDidBecomeActiveNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "appWillEnterForeground:", name: UIApplicationWillEnterForegroundNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "songDidChange:", name: MPMusicPlayerControllerNowPlayingItemDidChangeNotification, object: nil)
+        musicPlayer.beginGeneratingPlaybackNotifications()
+        
+        myTableView.frame = CGRectMake(0, 0 - view.bounds.height, view.bounds.width, view.bounds.height-100)
+        myTableView.delegate = self
+        myTableView.dataSource = self
+        myTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        
+        self.resultSearchController = ({
+            let controller = UISearchController(searchResultsController: nil)
+            controller.searchResultsUpdater = self
+            controller.searchBar.delegate = self
+            controller.dimsBackgroundDuringPresentation = false
+            controller.searchBar.sizeToFit()
+            controller.searchBar.userInteractionEnabled = true
+            controller.searchBar.hidden = false
+            
+            self.myTableView.tableHeaderView = controller.searchBar
+            
+            return controller
+        })()
+
+        
+        
+        myTableView.alpha = CGFloat(0.0)
+        //myTableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        
+        //UIApplication.sharedApplication().keyWindow?.addSubview(myTableView)
+        UIApplication.sharedApplication().keyWindow?.subviews.last?.addSubview(myTableView)
+        
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.items.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = myTableView.dequeueReusableCellWithIdentifier("cell")
+        
+        cell?.textLabel!.text = self.items[indexPath.row]
+        
+        return cell!
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        
+        UIView.animateWithDuration(0.3, delay: 0.0, options: .CurveLinear, animations: {
+            self.resultSearchController.searchBar.resignFirstResponder()
+            self.resultSearchController.active = false
+            self.myTableView.frame = CGRectMake(0, 0 - self.view.bounds.height, self.view.bounds.width, self.view.bounds.height)
+            self.myTableView.alpha = CGFloat(0.0)
+            
+            }, completion: nil)
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+
+    }
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+       
+    }
     
     @IBAction func lyricsPressed(sender: UIButton) {
         let title = musicPlayer.nowPlayingItem?.title
@@ -36,6 +109,17 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func searchPressed(sender: AnyObject) {
+        UIView.animateWithDuration(0.3, delay: 0.0, options: .CurveLinear, animations: {
+            
+            self.myTableView.frame = CGRectMake(0, 20, self.view.bounds.width, self.view.bounds.height - 20)
+            self.myTableView.alpha = CGFloat(1.0)
+            //self.resultSearchController.searchBar.becomeFirstResponder()
+            
+            }, completion: nil)
+        
+           }
+    
     @IBAction func musicAppPressed(sender: AnyObject) {
         let stringURL = "music:"
         let url: NSURL = NSURL(string: stringURL)!
@@ -48,25 +132,17 @@ class ViewController: UIViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
-        let query = MPMediaQuery.songsQuery()
-        let hasMoney = MPMediaPropertyPredicate(value: "money", forProperty: MPMediaItemPropertyTitle, comparisonType: .Contains)
-        query.addFilterPredicate(hasMoney)
-        let result = query.collections
-        
-        for song in result! {
-            print(song.representativeItem?.title)
-        }
+//        let query = MPMediaQuery.songsQuery()
+//        let hasMoney = MPMediaPropertyPredicate(value: "money", forProperty: MPMediaItemPropertyTitle, comparisonType: .Contains)
+//        query.addFilterPredicate(hasMoney)
+//        let result = query.collections
+//        
+//        for song in result! {
+//            print(song.representativeItem?.title)
+//        }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "appDidBecomeActive:", name: UIApplicationDidBecomeActiveNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "appWillEnterForeground:", name: UIApplicationWillEnterForegroundNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "songDidChange:", name: MPMusicPlayerControllerNowPlayingItemDidChangeNotification, object: nil)
-        musicPlayer.beginGeneratingPlaybackNotifications()
-        
-    }
+    
     
     
     func appDidBecomeActive(notifcation: NSNotification) {
@@ -105,7 +181,6 @@ class ViewController: UIViewController {
     }
     
     func songDidChange(notification: NSNotification) {
-        print("did cnhange")
         updateSongInfo()
     }
 }
